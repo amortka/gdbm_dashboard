@@ -1,0 +1,228 @@
+/* make all FLAT */
+* {
+    border-radius: 0;
+    box-shadow: none;
+    /* box-sizing: border-box; */
+}
+
+*:before, *:after {
+    /* box-sizing: border-box; */
+}
+body {
+  padding-top: 50px;
+  background-color: #E1E5E5;
+  color: #767676;
+}
+
+h1 small {
+   color: #bdc3c7;  
+}
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar-fixed-top {
+  border: 0;
+}
+
+/* Hide for mobile, show a bit later */
+.sidebar {
+    display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #ffffff;
+    border-right: 1px solid #eee;
+  }
+}
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 0px;
+    margin-left: -20px;
+}
+.nav-sidebar > li > a {
+    padding: 5px 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+.nav-sidebar > ul {
+    list-style: none;
+    font-size: 16px;
+    padding: 0 0 0 20px;
+}
+
+.nav-sidebar .solid {
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    background-color: none;
+    z-index:1024;
+}
+.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+    color: #1abc9c;
+    background-color: #ecf0f1; /*transparent;*/
+}
+.nav-sidebar > .active > .solid {
+    background-color: #1abc9c;
+}
+
+/* panels */
+.panel {
+    /* padding: 10px; */
+    border-radius: 0;  
+  
+}
+.panel-mini {
+    min-height: 110px;
+    border: none;
+    padding: 20px;
+}
+
+.panel-warning {
+    background-color: #e67e22;
+    border-color: #d35400;  
+}
+
+.panel-error {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.panel-info {
+    background-color: #3498db;
+    border-color: #2980b9;
+}
+.panel-warning, .panel-error, .panel-info {
+    color: #ffffff;  
+    border-radius: 5px;
+}
+
+.panel p {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.panel-mini h6 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.panel-mini p {
+    font-size: 12px;
+}
+/* box icon */
+.box-icon {
+    border-radius: 50%;
+    display: inline-block;
+    float: left;
+    font-size: 30px;
+    height: 65px;
+    line-height: 65px;
+    margin: 0 20px 10px 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 65px;
+}
+.box-icon {
+    background-color: #2980b9;
+    color: #ffffff;
+}
+.box-icon.bg-success {
+    background-color: #2ecc71;
+}
+.box-icon.bg-info {
+    background-color: #3498db;
+}
+.box-icon.bg-warning {
+    background-color: #d35400;
+}
+.box-icon.bg-error {
+    background-color: #e74c3c;
+}
+
+.box-icon:before, .box-icon:after {
+    box-sizing: border-box;
+    clear: both;
+    content: ""
+}
+.box-icon .glyphicon {
+    top: 0;
+    line-height: 65px;
+    display: block;    
+}
+
+/* main box cubes */
+.status-cubes li {
+    list-style-type: none;   
+    margin: 0 0 10px 0;
+}
+.status-cubes li span {
+    width: 100%;
+    display: block;
+    padding: 0 20px 0 15px;
+    line-height: 15px;
+    font-size: 15px;
+    -webkit-transition: all .2s ease-in-out;    
+}
+.status-cubes li span p {
+    display: inline-block;
+    height: 100%;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0 10px;
+    font-weight: bold;
+    -webkit-transition: all .1s ease-in-out;
+}
+.status-cubes a {
+    color: #767676;
+}
+.status-cubes a:hover p {
+    padding-left: 50px;
+}
+.status-cubes a:hover span.status-category {
+    padding-left: 0px;
+}
+.status-cubes a:hover span.glyphicon {
+    display: none;
+}
+.status-cubes a:hover small {
+    display: inline;
+}
+.status-cubes li span.ok {
+    background-color: #27ae60;
+    border-color: #2ecc71;
+}
+.status-cubes li span.warn {
+    background-color: #f39c12;
+    border-color: #f1c40f;
+}
+.status-cubes li span.err {
+    background-color: #c0392b;
+    border-color: #e74c3c;
+}
+.status-cubes .glyphicon {
+    display: none;
+    color: white;
+}
+.status-cubes small {
+    display: none;
+    color: white;
+    padding-left: 10px;
+}

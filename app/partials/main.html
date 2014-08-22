@@ -1,0 +1,77 @@
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Dashboard <small>Dashboard Home</small></h1>
+                </div>
+            </div>
+            
+            <div class="row">
+                <ul class="col-lg-12 status-cubes">
+                    <li class="col-lg-4" ng-repeat="category in categories">
+                        <a href="#/category/{{ category.name|escape }}">
+                            <span class="{{ category.status }} status-category">
+                                <p>{{ category.name }}</p>
+                                <small>see details...</small>
+                                <span class="glyphicon glyphicon-stats"></span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="panel panel-default">
+                        <h4>title</h6>
+                        <p>panel 1</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="panel panel-default panel-info">
+                        <h4>title</h6>
+                        <p>panel 2</p>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-3">
+                    <div class="panel panel-default panel-warning">
+                        <h4>title</h4>
+                        <p>panel 1</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="panel panel-default panel-error">
+                        <h4>title</h5>
+                        <p>panel 2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="panel panel-default panel-mini">
+                        <span class="box-icon bg-success">
+                            <span class="glyphicon glyphicon-tag"></span>
+                        </span>
+                        <h6>450k</h6>
+                        <p>informations</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="panel panel-default panel-mini">
+                        <span class="box-icon bg-info">
+                            <span class="glyphicon glyphicon-tags"></span>
+                        </span>
+                        <h6>25%</h6>
+                        <p>informations</p>
+                    </div>
+                </div>
+                 <div class="col-md-6 col-lg-4">
+                    <div class="panel panel-default panel-mini">
+                        <span class="box-icon bg-error">
+                            <span class="glyphicon glyphicon-signal"></span>
+                        </span>
+                        <h6>33,566</h6>
+                        <p>data info</p>
+                    </div>
+                </div>
+
+            </div>
+     

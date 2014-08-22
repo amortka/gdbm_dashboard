@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>GDBM monitoring</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/app.css"/>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="css/flat-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="css/app.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    
+    <div id="nav" ng-controller="navigationController" ng-include="navigationTemplate.url" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div id="sidebar" ng-controller="navigationController" ng-include="navigationSidebarTemplate.url" class="col-sm-3 col-md-2 sidebar">
+        </div>
+        <div id="page-wrapper" ng-view class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Dashboard</h1>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- /#wrapper -->
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/temp/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>  
+</body>
+</html>
