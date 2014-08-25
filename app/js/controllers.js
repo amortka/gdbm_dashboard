@@ -4,7 +4,7 @@
 
 angular.module('myApp.controllers', [])
     .controller('navigationController', function($scope, $route, $routeParams, $location) {
-            $scope.navigationTemplate = {name: 'navigation', url: 'partials/navigation.html'};
+            $scope.navigationTemplate = {name: 'navigation', url: 'partials/navigationTop.html'};
             $scope.navigationSidebarTemplate = {name: 'sidebar navigation', url: 'partials/navigationSidebar.html'};
             
             $scope.getClass = function(path) {
