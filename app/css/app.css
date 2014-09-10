@@ -9,22 +9,25 @@
     /* box-sizing: border-box; */
 }
 body {
-  padding-top: 50px;
-  background-color: #f2f2f2;
-  color: #767676;
+    padding-top: 50px;
+    background-color: #f2f2f2;
+    color: #767676;
 }
 
 h1 small {
-   color: #bdc3c7;  
+    color: #bdc3c7;  
 }
 
 .sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }
 
+.navbar-brand {
+    padding-left:35px;
+}
 .navbar-fixed-top {
-  border: 0;
+    border: 0;
 }
 
 /* Hide for mobile, show a bit later */
@@ -32,19 +35,19 @@ h1 small {
     display: none;
 }
 @media (min-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #ffffff;
-    border-right: 1px solid #eee;
-  }
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: #ffffff;
+        border-right: 1px solid #eee;
+    }
 }
 /* Sidebar navigation */
 .nav-sidebar {
@@ -65,7 +68,7 @@ h1 small {
 .nav-sidebar > ul {
     list-style: none;
     font-size: 16px;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 30px;
 }
 
 .nav-sidebar .solid {
@@ -87,7 +90,7 @@ h1 small {
 .panel {
     padding: 10px;
     border-radius: 0;  
-  
+
 }
 .panel-mini {
     min-height: 110px;
@@ -209,15 +212,15 @@ h1 small {
 .status-cubes a:hover small {
     display: inline;
 }
-.status-cubes li span.ok {
+.status-cubes li span.success {
     background-color: #27ae60;
     border-color: #2ecc71;
 }
-.status-cubes li span.warn {
+.status-cubes li span.warning {
     background-color: #f39c12;
     border-color: #f1c40f;
 }
-.status-cubes li span.err {
+.status-cubes li span.error {
     background-color: #c0392b;
     border-color: #e74c3c;
 }
@@ -227,6 +230,138 @@ h1 small {
 }
 .status-cubes small {
     display: none;
-    color: white;
+    color: #FFFFFF;
     padding-left: 10px;
+}
+
+/* loading bar */
+#loading-bar .bar {
+  -webkit-transition: all 650ms;
+     -moz-transition: all 650ms;
+       -o-transition: all 650ms;
+          transition: all 650ms;
+
+  background: #29d; /*#29d;*/
+  /*
+  //background-image: linear-gradient(90deg, #36D7B7,#29d);  
+  //background-image: linear-gradient(90deg, #69D2E7, #29d);  
+  */
+  position: fixed;
+  z-index: 10002;
+  top: 53px;
+  bottom: -1px;
+  left: 0;
+  height: 3px;
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+  /* border-bottom-color: red; */
+  /* border-bottom-width: 2px; */
+  border-bottom: 1px solid #FFF;
+}
+
+#loading-bar .peg {
+  background-image: linear-gradient(90deg, #29d, #FFF);   
+  position: absolute;
+  width: 70px;
+  right: 0;
+  top: 0;
+  height: 2px;
+  opacity: .45;
+  -moz-box-shadow: #3498db 1px 0 6px 1px;
+  -ms-box-shadow: #3498db 1px 0 6px 1px;
+  -webkit-box-shadow: #3498db 1px 0 6px 1px;
+  box-shadow: cyan 1px 0 6px 1px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+/* colors depends on % */
+/* 25-50% */
+#loading-bar.loadbar-25pct .bar {
+    background: #07e264;
+}
+#loading-bar.loadbar-25pct .peg {
+     -moz-box-shadow: #00ff6c 1px 0 6px 1px;
+      -ms-box-shadow: #00ff6c 1px 0 6px 1px;
+  -webkit-box-shadow: #00ff6c 1px 0 6px 1px;
+          box-shadow: #00ff6c 1px 0 6px 1px;  
+}
+/* 50-75% */
+#loading-bar.loadbar-50pct .bar {
+    background: #f1c40f;
+}
+#loading-bar.loadbar-50pct .peg {
+     -moz-box-shadow: #ffea00 1px 0 6px 1px;
+      -ms-box-shadow: #ffea00 1px 0 6px 1px;
+  -webkit-box-shadow: #ffea00 1px 0 6px 1px;
+          box-shadow: #ffea00 1px 0 6px 1px;  
+}
+/* 75-90% */
+#loading-bar.loadbar-75pct .bar {
+    background: #d35400;
+}
+#loading-bar.loadbar-75pct .peg {
+     -moz-box-shadow: #ff6600 1px 0 6px 1px;
+      -ms-box-shadow: #ff6600 1px 0 6px 1px;
+  -webkit-box-shadow: #ff6600 1px 0 6px 1px;
+          box-shadow: #ff6600 1px 0 6px 1px;  
+}
+/* 90-100% */
+#loading-bar.loadbar-90pct .bar {
+    background: #e74c3c;
+}
+#loading-bar.loadbar-90pct .peg {
+     -moz-box-shadow: #ff1800 1px 0 6px 1px;
+      -ms-box-shadow: #ff1800 1px 0 6px 1px;
+  -webkit-box-shadow: #ff1800 1px 0 6px 1px;
+          box-shadow: #ff1800 1px 0 6px 1px;  
+}
+/* 100% - hide*/
+#loading-bar.loadbar-complete {
+    display: none; 
+}
+#loading-bar-spinner.loadbar-complete {
+    display: none; 
+}
+
+#loading-bar-spinner {
+    display: block;
+    position: absolute;
+    z-index: 10002;
+    top: 10px;
+    left: 10px;
+}
+
+#loading-bar-spinner .spinner-icon {
+    width: 14px;
+    height: 14px;
+    border:  solid 2px transparent;
+    border-top-color:  #FFF;/*#29d;*/
+    border-left-color: #FFF;/*#29d;*/
+    border-radius: 10px;
+    -webkit-animation: loading-bar-spinner 400ms linear infinite;
+    -moz-animation:    loading-bar-spinner 400ms linear infinite;
+    -ms-animation:     loading-bar-spinner 400ms linear infinite;
+    -o-animation:      loading-bar-spinner 400ms linear infinite;
+    animation:         loading-bar-spinner 400ms linear infinite;
+}
+@-webkit-keyframes loading-bar-spinner {
+    0%   { -webkit-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes loading-bar-spinner {
+    0%   { -moz-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes loading-bar-spinner {
+    0%   { -o-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes loading-bar-spinner {
+    0%   { -ms-transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes loading-bar-spinner {
+    0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+    100% { transform: rotate(360deg); transform: rotate(360deg); }
 }

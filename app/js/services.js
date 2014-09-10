@@ -1,62 +1,125 @@
 'use strict';
 
-/* Services */
+/* Services, factories, providers */
 angular.module('myApp.services', [])
-    .factory('getStatus', function () {
-        var serviceAPI = {};
-        serviceAPI.getCategories = function() {
-            var categories = [
-                {name: 'CBS OPPT', status: 'ok'},
-                {name: 'CC', status: 'ok'},
-                {name: 'CCM', status: 'warn'},
-                {name: 'CCR2', status: 'err'},
-                {name: 'CFSWeb BH', status: 'ok'},
-                {name: 'CFSWeb CBS', status: 'ok'},
-                {name: 'CROSS', status: 'ok'},
-                {name: 'DDAD', status: 'ok'},
-                {name: 'DSG', status: 'ok'},
-                {name: 'DSW ODS', status: 'err'},
-                {name: 'DSW P&C/SQO', status: 'ok'},
-                {name: 'DSW SAP', status: 'ok'},
-                {name: 'DSW eBiz SAP', status: 'err'},
-                {name: 'DSW eBiz SDMA', status: 'warn'},
-                {name: 'ESI', status: 'ok'},
-                {name: 'GDBM Webserver', status: 'ok'},
-                {name: 'IIW', status: 'warn'},
-                {name: 'MFS/MOL', status: 'ok'},
-                {name: 'OMCS', status: 'err'},
-                {name: 'OPRA', status: 'ok'},
-                {name: 'OPRA-LN', status: 'err'},
-                {name: 'OPRA-LN-Lenovo', status: 'ok'},
-                {name: 'PASS', status: 'ok'},
-                {name: 'PartnerCommerce', status: 'err'},
-                {name: 'SOFT', status: 'ok'},
-                {name: 'SOXDR', status: 'warn'},
-                {name: 'SalesConnect', status: 'ok'},
-                {name: 'WTAAS', status: 'warn'},
-                {name: 'ePricer', status: 'ok'},
-                {name: 'ePricer Web Services', status: 'warn'}];
-            return categories;
-        }
-
-        return serviceAPI;
-    })
-    .factory('getStatistics', function($http) {
-
-        var serviceAPI = {};
-
-        serviceAPI.getStats = function (){
-                
-            var stats = {};
-                stats.performance = [12, 43, 34, 22, 12, 33, 4, 17, 22, 34, 54, 67],
-                stats.visits = [123, 323, 143, 132, 274, 223, 143, 156, 223, 223],
-                stats.budget = [23, 19, 11, 34, 42, 52, 35, 22, 37, 45, 55, 57],
-                stats.sales = [11, 9, 31, 34, 42, 52, 35, 22, 37, 45, 55, 57],
-                stats.targets = [17, 19, 5, 4, 62, 62, 75, 12, 47, 55, 65, 67],
-                stats.avrg = [117, 119, 95, 114, 162, 162, 175, 112, 147, 155, 265, 167];
+        .factory('getStatus', function($http) {
+            var serviceAPI = {};
+            //TODO: implement cache
             
-            return stats            
-        }
+            serviceAPI.getCategories = function() {  
+            //http://localhost:8282/api/getlist/categories/
+                return $http({
+                   method: 'GET',
+                    url: 'http://localhost:8282/api/categories/list/?debug=1'
+                }); 
+            };
 
-        return serviceAPI;
-  });
+            serviceAPI.getCategoryEvents = function(category) {  
+            //http://localhost:8282/api/getlist/category/CC
+                return $http({
+                   method: 'GET',
+                    url: 'http://localhost:8282/api/categories/events/'+category+'+?debug=1'
+                }); 
+            };
+
+            return serviceAPI;
+        })
+        //TODO: something to do...
+        .factory("loaderFactory", function ($document, $timeout) {
+            var loadbar = {};
+            loadbar.container = $document[0].createElement('div');
+            loadbar.container.id = "loading-bar";
+            loadbar.container.innerHTML = '<div class="bar"><div class="peg"></div></div>';
+            loadbar.bodyElement = document.body;
+            loadbar.bodyElement.appendChild(loadbar.container);
+            loadbar.containerBar = loadbar.container.getElementsByClassName('bar')[0];
+            loadbar.pct = 0;
+            loadbar.changeColors = false;
+           
+            loadbar.getDomElement = function (elId) {
+                var el = angular.element(document.querySelector(elId));
+                return el;                
+            }
+            
+            loadbar.reset = function () {
+                var elLoadbar = loadbar.getDomElement('#loading-bar');
+                if (elLoadbar.hasClass('loadbar-complete')) {
+                    elLoadbar.removeClass('loadbar-complete');
+                }
+                var elSpinner = loadbar.getDomElement('#loading-bar-spinner');
+                if (elSpinner.hasClass('loadbar-complete')) {
+                    elSpinner.removeClass('loadbar-complete');
+                }
+                loadbar.go(0);
+            }
+            loadbar.start = function() {
+                loadbar.reset();
+                $timeout(loadbar.inc, 500);
+                
+            }
+            loadbar.inc = function() {
+                if (loadbar.pct >= 1) {
+                  return;
+                }
+                
+                var stat = loadbar.pct;
+                var rnd = 0;
+                if (stat >= 0 && stat < 0.25) {
+                  // Start out between 3 - 6% increments
+                  rnd = (Math.random() * (5 - 3 + 1) + 3) / 100;
+                } else if (stat >= 0.25 && stat < 0.65) {
+                  // increment between 0 - 3%
+                  rnd = (Math.random() * 3) / 100;
+                } else if (stat >= 0.65 && stat < 0.9) {
+                  // increment between 0 - 2%
+                  rnd = (Math.random() * 2) / 100;
+                } else if (stat >= 0.9 && stat < 0.99) {
+                  // finally, increment it .5 %
+                  rnd = 0.005;
+                } else {
+                  // after 99%, don't increment:
+                  rnd = 0;
+                }                
+                
+                var lClass = '';
+                if (stat < 0.25) {
+                    lClass = '';
+                } else if (stat >= 0.25 && stat < 0.50 && loadbar.changeColors) {
+                    lClass = 'loadbar-25pct';
+                } else if (stat >= 0.50 && stat < 0.75 && loadbar.changeColors) {
+                    lClass = 'loadbar-50pct';
+                } else if (stat >= 0.75 && stat < 0.90 && loadbar.changeColors) {
+                    lClass = 'loadbar-75pct';
+                } else if (stat >= 0.90 && stat < 1 && loadbar.changeColors) {
+                    lClass = 'loadbar-90pct';
+                } else if (stat >= 1) {
+                    lClass = 'loadbar-complete';
+                }
+                
+                loadbar.pct += rnd;
+                loadbar.go(loadbar.pct);
+                loadbar.setClass(lClass);
+                $timeout(loadbar.inc, 500);
+            }
+            loadbar.go = function(i) {
+                loadbar.pct = i;
+                loadbar.containerBar.style.width = Math.round(loadbar.pct*100)+'%';
+            }
+            loadbar.setClass = function(className) {
+                loadbar.container.className = className;
+            }
+            loadbar.complete = function() {
+                loadbar.go(1);
+                $timeout(loadbar.hide, 750);                
+            }
+            loadbar.hide = function() {
+                loadbar.getDomElement('#loading-bar').addClass('loadbar-complete');
+                loadbar.getDomElement('#loading-bar-spinner').addClass('loadbar-complete');
+            }
+            loadbar.start();
+            
+            return loadbar;
+        })
+        .run(function (loaderFactory) {
+            
+        });
